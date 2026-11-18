@@ -132,10 +132,10 @@ export default {
     },
     itemActions: {
       type: Array,
-      default () {
+      default (props) {
         return [
-          { name: 'edit-item', permission: `UPDATE_${this.apiUrl.toUpperCase()}`, icon: 'fas fa-pencil-alt', class: 'btn btn-info' },
-          { name: 'delete-item', permission: `DESTROY_${this.apiUrl.toUpperCase()}`, icon: 'fas fa-trash-alt', class: 'btn btn-danger' }
+          { name: 'edit-item', permission: `UPDATE_${props.apiUrl.toUpperCase()}`, icon: 'fas fa-pencil-alt', class: 'btn btn-info' },
+          { name: 'delete-item', permission: `DESTROY_${props.apiUrl.toUpperCase()}`, icon: 'fas fa-trash-alt', class: 'btn btn-danger' }
         ]
       }
     },
@@ -192,12 +192,11 @@ export default {
 
     this.onSearch()
   },
-  mounted() {
-    this.$parent.$on('reload', () => {
-      this.onSearch(this.$route.query.page)
-    })
-  },
+  emits: ['table-action'],
   methods: {
+    reload() {
+      this.onSearch(this.$route.query.page)
+    },
     loadPage(page) {
       if (page == 'prev') {
         this.goPreviousPage()
