@@ -1,9 +1,9 @@
 <template>
   <vue-form :title="$t('form.edit_comment')">
-    <template slot="buttons">
-      <router-link :to="{ name: 'dashboard.comment' }" class="btn btn-sm btn-secondary" exact>{{ $t('form.back') }}</router-link>
+    <template #buttons>
+      <router-link :to="{ name: 'dashboard.comment' }" class="btn btn-sm btn-secondary">{{ $t('form.back') }}</router-link>
     </template>
-    <template slot="content">
+    <template #content>
       <div class="row">
         <form class="col-md-10 offset-md-1" @submit.prevent="edit">
           <div class="form-group text-center">
