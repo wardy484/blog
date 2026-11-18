@@ -107,7 +107,7 @@
       </div>
     </div>
     <modal :show="showFolder" @confirm="confirm" @cancel="showFolder = false" show-footer>
-      <template slot="title">{{ $t('form.create_folder') }}</template>
+      <template #title>{{ $t('form.create_folder') }}</template>
       <form>
         <div class="form-group row">
           <label for="folder" class="col-form-label col-sm-3">{{ $t('form.folder_name') }}</label>
@@ -118,7 +118,7 @@
       </form>
     </modal>
     <modal :show="showFile" @confirm="uploadFile" @cancel="showFile = false" show-footer>
-      <template slot="title">{{ $t('form.upload_file') }}</template>
+      <template #title>{{ $t('form.upload_file') }}</template>
       <form enctype="multipart/form-data">
         <div class="form-group row">
           <label for="file" class="col-form-label col-sm-3">{{ $t('form.file') }}</label>
@@ -136,7 +136,7 @@
       </form>
     </modal>
     <modal :show="showImage" @confirm="confirm" @cancel="showImage = false">
-      <template slot="title">{{ $t('form.image') }}</template>
+      <template #title>{{ $t('form.image') }}</template>
       <div class="col-sm-12 text-center">
         <img :src="preview_image" class="preview-size">
       </div>

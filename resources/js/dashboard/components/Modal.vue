@@ -98,12 +98,13 @@ export default {
       }
     }
   },
+  emits: ['confirm', 'cancel'],
   created () {
     if (this.show) {
       document.body.className += ' modal-open';
     }
   },
-  beforeDestroy () {
+  beforeUnmount () {
     document.body.className = document.body.className.replace(/\s?modal-open/, '');
   },
   watch: {
@@ -157,7 +158,7 @@ export default {
   transition: all .3s ease;
   font-family: Helvetica, Arial, sans-serif;
 }
-.modal-enter .modal-content,
+.modal-enter-from .modal-content,
 .modal-leave-active .modal-content {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
