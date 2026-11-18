@@ -2,21 +2,25 @@
 
 namespace Tests;
 
-use App\User;
-use Laravel\Passport\Passport;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
 abstract class TestCase extends BaseTestCase
 {
     use CreatesApplication;
 
-    public function actingAsAdmin()
+    protected function setUp(): void
     {
-        Passport::actingAs(
-            factory(User::class, 'admin')->create(),
-            ['user', 'article']
-        );
+        parent::setUp();
 
-        return $this;
+        $this->withoutMix();
+    }
+
+    protected function tearDown(): void
+    {
+        // jcc/laravel-vote calls Model::unguard() on every vote and never restores it.
+        Model::reguard();
+
+        parent::tearDown();
     }
 }
