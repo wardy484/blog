@@ -1,3 +1,43 @@
+# Upgraded in public
+
+**Laravel 9 → 13, PHP 8.4, Mix → Vite, Vue 2 → 3 in one evening.** Each step is a separate pull request with tests passing. [See the pull requests](https://github.com/wardy484/blog/pulls?q=is%3Apr). I use AI coding agents for the typing, with review gates and tests at every step. I do the same for agencies' client sites, white-label, at a fixed price per codebase.
+
+| Step | Pull request | Agent time |
+|---|---|---|
+| 1 | [Test baseline, agent rules and CI](https://github.com/wardy484/blog/pull/1) | 8 min |
+| 2 | [Laravel 10](https://github.com/wardy484/blog/pull/2) | 3 min |
+| 3 | [Laravel 11](https://github.com/wardy484/blog/pull/4) | 1 min |
+| 4 | [Laravel 12](https://github.com/wardy484/blog/pull/5) | 1 min |
+| 5 | [Laravel 13 and PHP 8.4](https://github.com/wardy484/blog/pull/6) | 6 min |
+| 6 | [Mix to Vite](https://github.com/wardy484/blog/pull/7) | 13 min |
+| 7 | [Vue 2 to Vue 3](https://github.com/wardy484/blog/pull/8) | 18 min |
+| 8 | [Browser test of the main flow](https://github.com/wardy484/blog/pull/9) | 5 min |
+
+Agent time is wall-clock time from my log on 18 November 2026, from 21:48 to 22:50 including setup. It doesn't include my review of each pull request.
+
+## Before and after
+
+| | Before | After |
+|---|---|---|
+| Tests | 6, of which 1 passed | 43, all passing, including one in a real browser |
+| Line coverage of `app/`, feature tests | 3.8% | 47.4% |
+| `composer audit` | 69 advisories in 19 packages | 0 |
+
+Some packages were abandoned or had no release for the new versions:
+
+- `jcc/laravel-vote` became about 100 lines in `app/`
+- `jcc/translug` was deleted. Its code path could never run.
+- `fideloper/proxy` was deleted. The framework already does its job.
+- `fzaninotto/faker` became `fakerphp/faker`
+- `vue-datepicker` became the browser's own date and time input
+- `v-textcomplete` moved into the app as a Vue 3 component
+
+## How the agents work here
+
+The rules are in [AGENTS.md](AGENTS.md), with three skills in [.agents/skills](.agents/skills): one for a Laravel major version, one for moving a Vue component, and one for the checks before a pull request goes up. Tests come first. Every step gets its own pull request, and a pull request only goes up with its tests green.
+
+---
+
 <p align="center">
 <a href="https://pigjian.com/">
 <img src="https://pigjian.com/uploads/Logo.png" alt="Powered By Jiajian Chan" width="160">
