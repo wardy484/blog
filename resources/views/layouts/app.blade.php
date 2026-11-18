@@ -14,8 +14,11 @@
 
     <title>@yield('title', config('app.name'))</title>
 
-    <link rel="stylesheet" href="{{ mix('css/home.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/themes/' . config('blog.color_theme') . '.css') }}">
+    @vite([
+        'resources/sass/home.scss',
+        'resources/sass/themes/' . config('blog.color_theme') . '.scss',
+        'resources/js/home.js',
+    ])
 
     <!-- Scripts -->
     <script>
@@ -39,12 +42,9 @@
         @include('particals.footer')
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/home.js') }}"></script>
-
     @yield('scripts')
 
-    <script>
+    <script type="module">
         $(function () {
             $("[data-toggle='tooltip']").tooltip();
         });

@@ -32,9 +32,9 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '22'
           cache: yarn
 
       - run: yarn install --frozen-lockfile
 
-      - run: yarn production
+      - run: yarn build

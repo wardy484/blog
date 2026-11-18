@@ -1,11 +1,5 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * include Vue and Vue Resource. This gives a great starting point for
- * building robust, powerful web applications using Vue and Laravel.
- */
-
-require('./bootstrap')
-
+import './bootstrap'
+import 'vendor/highlight.min.js'
 import Vue from 'vue'
 import httpPlugin from 'plugins/http/index'
 import VueRouter from 'vue-router'
@@ -17,12 +11,15 @@ import router from './router/index'
 import locales from 'lang/index'
 
 import App from './App.vue'
+import 'dashboard/runtime/mixins/index'
+import marked from 'marked'
+import toastr from 'toastr'
+import TablePagination from 'dashboard/components/TablePagination.vue'
+import Table from 'dashboard/components/Table.vue'
+import Form from 'dashboard/components/Form.vue'
 
-require('dashboard/runtime/mixins/index')
-
-window.marked = require('marked')
-window.hljs = require('vendor/highlight.min.js')
-window.toastr = require('toastr/build/toastr.min.js')
+window.marked = marked
+window.toastr = toastr
 window.innerHeight = 800
 
 window.toastr.options = {
@@ -48,11 +45,11 @@ const i18n = new VueI18n({
     messages: locales
 })
 
-Vue.component('vue-table-pagination', require('dashboard/components/TablePagination.vue').default)
+Vue.component('vue-table-pagination', TablePagination)
 
-Vue.component('vue-table', require('dashboard/components/Table.vue').default)
+Vue.component('vue-table', Table)
 
-Vue.component('vue-form', require('dashboard/components/Form.vue').default)
+Vue.component('vue-form', Form)
 
 new Vue({
     router,

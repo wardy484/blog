@@ -34,7 +34,7 @@ export default {
     }
   },
   mounted() {
-    let t = this.$t || this.$i18n.t
+    const t = (key, values) => this.$t(key, values)
 
     this.simplemde = new SimpleMDE({
       element: document.getElementById("editor"),

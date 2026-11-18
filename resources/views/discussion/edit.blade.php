@@ -65,7 +65,7 @@
 @endsection
 
 @section('scripts')
-<script type="text/javascript">
+<script type="module">
     $('.select').select2();
 </script>
 @endsection

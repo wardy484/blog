@@ -1,20 +1,28 @@
+import './globals'
+import 'bootstrap'
+import 'vendor/highlight.min.js'
+import select2 from 'select2'
 import Vue from 'vue'
-import VueI18n from 'vue-i18n';
-import locales from 'lang/index';
-import httpPlugin from 'plugins/http/index';
+import VueI18n from 'vue-i18n'
+import marked from 'marked'
+import toastr from 'toastr'
+import locales from 'lang/index'
+import httpPlugin from 'plugins/http/index'
+import Comment from 'home/components/Comment.vue'
+import Parse from 'home/components/Parse.vue'
+import Textarea from 'home/components/Textarea.vue'
+import AvatarUpload from 'home/components/AvatarUpload.vue'
+import socialShareUrl from 'social-share.js/dist/js/social-share.min.js?url'
 
-try {
-  window.Popper = require('popper.js').default;
-  window.$ = window.jQuery = require('jquery');
+select2(window, window.jQuery)
 
-  require('bootstrap');
-} catch (e) {}
+window.marked = marked
+window.toastr = toastr
 
-require('social-share.js/dist/js/social-share.min.js');
-require('vendor/select2.min.js');
-window.marked = require('marked');
-window.hljs = require('vendor/highlight.min.js');
-window.toastr = require('toastr/build/toastr.min.js');
+// social-share relies on sloppy-mode `this`, so it can't run as a module.
+const socialShare = document.createElement('script')
+socialShare.src = socialShareUrl
+document.head.appendChild(socialShare)
 
 Vue.use(VueI18n);
 Vue.use(httpPlugin);
@@ -26,13 +34,13 @@ const i18n = new VueI18n({
   messages: locales
 })
 
-Vue.component('comment', require('home/components/Comment.vue').default);
+Vue.component('comment', Comment);
 
-Vue.component('parse', require('home/components/Parse.vue').default);
+Vue.component('parse', Parse);
 
-Vue.component('parse-textarea', require('home/components/Textarea.vue').default);
+Vue.component('parse-textarea', Textarea);
 
-Vue.component('avatar', require('home/components/AvatarUpload.vue').default);
+Vue.component('avatar', AvatarUpload);
 
 new Vue({
   i18n: i18n,

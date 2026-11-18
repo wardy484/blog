@@ -59,7 +59,7 @@
         <div class="form-group row">
           <label class="col-sm-2 col-form-label">{{ $t('form.datetime') }}</label>
           <div class="col-sm-10">
-            <date-picker :date="startTime" :option="option"></date-picker>
+            <input type="datetime-local" step="1" class="form-control" v-model="startTime.time" :placeholder="$t('form.published_at')">
           </div>
         </div>
         <div class="form-group row">
@@ -103,15 +103,13 @@
   import { default as SimpleMDE } from 'simplemde/dist/simplemde.min'
   import Multiselect from 'vue-multiselect'
   import { stack_error } from 'config/helper'
-  import DatePicker from 'vue-datepicker'
   import FineUploader from 'fine-uploader/lib/traditional'
   import emojione from 'emojione'
 
   export default {
     mixins: [FormMixin],
     components: {
-      Multiselect,
-      DatePicker
+      Multiselect
     },
     props: {
       article: {
@@ -139,11 +137,11 @@
         this.selected = this.article.category.data
         this.tags = this.article.tags.data
         this.simplemde.value(this.article.content)
-        this.startTime.time = this.article.published_time
+        this.startTime.time = this.article.published_time.replace(' ', 'T')
       }
     },
     mounted () {
-      let t = this.$t || this.$i18n.t
+      const t = (key, values) => this.$t(key, values)
       let self = this
 
       this.simplemde = new SimpleMDE({
@@ -185,7 +183,7 @@
           tagIDs[i] = this.tags[i].id
         }
 
-        this.article.published_at = this.startTime.time
+        this.article.published_at = this.startTime.time.replace('T', ' ')
         this.article.content = this.simplemde.value()
         this.article.category_id = this.selected.id
         this.article.tags = JSON.stringify(tagIDs)
