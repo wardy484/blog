@@ -36,7 +36,7 @@
       </template>
       <div class="form-group">
         <div class="custom-control custom-checkbox d-inline-block pr-3">
-          <input type="checkbox" class="custom-control-input" id="is-admin" v-model="user.is_admin">
+          <input type="checkbox" class="custom-control-input" id="is-admin" v-model="user.is_admin" :true-value="1" :false-value="0">
           <label class="custom-control-label" for="is-admin">Set Admin</label>
         </div>
       </div>
