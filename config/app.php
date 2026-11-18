@@ -166,7 +166,6 @@ return [
          */
         Laravel\Passport\PassportServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
-        JellyBool\Translug\TranslugServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
@@ -233,7 +232,6 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
-        'Translug' => JellyBool\Translug\TranslugFacade::class,
         'Image' => Intervention\Image\Facades\Image::class,
     ],
 

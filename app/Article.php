@@ -80,11 +80,7 @@ class Article extends Model
     {
         $this->attributes['title'] = $value;
 
-        if (!config('services.youdao.appKey') || !config('services.youdao.appSecret')) {
-            $this->setUniqueSlug($value, Str::random(5));
-        } else {
-            $this->setUniqueSlug(translug($value), '');
-        }
+        $this->setUniqueSlug($value, Str::random(5));
     }
 
     /**
