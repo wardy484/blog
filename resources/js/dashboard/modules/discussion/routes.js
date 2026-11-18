@@ -2,7 +2,7 @@ export default [{
   path: 'discussions',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.discussion',
     component: () => import('./Discussion')
   }, {

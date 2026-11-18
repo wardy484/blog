@@ -12,7 +12,7 @@
 
     <link rel="shortcut icon" href="{{ config('blog.default_icon') }}">
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
         [v-cloak] { display: none; }
@@ -34,8 +34,6 @@
 </head>
 <body>
     <div id="app"></div>
-
-    <script src="{{ mix('js/app.js') }}"></script>
 
     @if(config('blog.google.open'))
     <script>

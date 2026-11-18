@@ -1,9 +1,9 @@
 <template>
   <vue-form :title="$t('form.edit_link')">
-    <template slot="buttons">
-      <router-link :to="{ name: 'dashboard.role' }" class="btn btn-sm btn-secondary" exact>{{ $t('form.back') }}</router-link>
+    <template #buttons>
+      <router-link :to="{ name: 'dashboard.role' }" class="btn btn-sm btn-secondary">{{ $t('form.back') }}</router-link>
     </template>
-    <template slot="content">
+    <template #content>
       <role-form :role="role"></role-form>
     </template>
   </vue-form>

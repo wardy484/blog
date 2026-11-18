@@ -58,7 +58,7 @@ export default {
   edit: 'Edit',
   crop_avatar: 'Crop Avatar',
   modify_avatar: 'Modify Avatar',
-  content_placeholder: 'Please input the %{type} content.',
+  content_placeholder: 'Please input the {type} content.',
   article: 'article',
   discussion: 'discussion',
   comment: 'comment',

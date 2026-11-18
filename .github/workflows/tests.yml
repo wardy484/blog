@@ -1,0 +1,37 @@
+name: tests
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: pcov
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: yarn
+
+      - run: composer install --no-interaction --no-progress
+
+      - run: yarn install --frozen-lockfile
+
+      - run: yarn build
+
+      - run: npx playwright install --with-deps chromium
+
+      - run: |
+          cp .env.example .env
+          php artisan key:generate
+          php artisan passport:keys
+
+      - run: vendor/bin/pest --coverage

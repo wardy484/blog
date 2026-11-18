@@ -4,26 +4,20 @@ namespace App;
 
 use App\Notifications\GotVote;
 use EloquentFilter\Filterable;
-use Jcc\LaravelVote\Traits\Voter;
-use Jcc\LaravelVote\Vote;
 use App\Traits\FollowTrait;
+use App\Traits\Voter;
 use App\Scopes\StatusScope;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements OAuthenticatable
 {
-    use HasApiTokens, Notifiable, SoftDeletes, FollowTrait, Voter, HasRoles, Filterable;
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
+    use HasApiTokens, HasFactory, Notifiable, SoftDeletes, FollowTrait, Voter, HasRoles, Filterable;
 
     /**
      * The attributes that are mass assignable.

@@ -61,7 +61,7 @@
 @endsection
 
 @section('scripts')
-    <script>
+    <script type="module">
         hljs.initHighlightingOnLoad();
     </script>
 @endsection

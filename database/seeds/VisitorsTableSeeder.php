@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Visitor;
+use App\Article;
 use Illuminate\Database\Seeder;
 
 class VisitorsTableSeeder extends Seeder
@@ -14,6 +15,9 @@ class VisitorsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Visitor::class, 100)->create();
+        Visitor::factory()
+            ->count(100)
+            ->recycle(Article::all())
+            ->create();
     }
 }

@@ -15,12 +15,12 @@
           <a href="/setting"><i class="fas fa-cog"></i></a>
         </div>
       </div>
-      <li v-for="menu in menus" :class="{ 'mb-3': menu.children }" v-if="menu.can">
+      <li v-for="menu in menus" :class="{ 'mb-3': menu.children }">
         <div class="sidebar-group" v-if="menu.children">
           <p class="sidebar-heading text-white-50"><span>{{ $t(menu.label) }}</span></p>
           <ul class="sidebar-group-items">
-            <li v-for="item in menu.children" v-if="item.can">
-              <router-link :to="item.uri">
+            <li v-for="item in menu.children">
+              <router-link :to="item.uri" :class="{ active: isOpen(item.uri) }">
                 <i :class="item.icon"></i> {{ $t(item.label) }}
               </router-link>
             </li>
@@ -46,25 +46,22 @@
     mounted() {
       this.user = window.User
     },
+    methods: {
+      allows (item) {
+        return item.permission ? this.checkPermission(item.permission) : true
+      },
+      // Vue Router 4 no longer marks a list link active on its create and edit pages.
+      isOpen (uri) {
+        return this.$route.path.startsWith(this.$router.resolve(uri).path)
+      }
+    },
     computed: {
       menus () {
-        menus.forEach((item) => {
-          if (item.children) {
-            let i = 0
-
-            item.children.forEach((child) => {
-              child.can = child.permission ? this.checkPermission(child.permission) : true
-
-              i = child.can ? i + 1 : i
-            })
-
-            item.can = i > 0
-          } else {
-            item.can = item.permission ? this.checkPermission(item.permission) : true
-          }
-        })
-
         return menus
+          .map(menu => menu.children
+            ? { ...menu, children: menu.children.filter(child => this.allows(child)) }
+            : menu)
+          .filter(menu => menu.children ? menu.children.length > 0 : this.allows(menu))
       },
 
       userInfo() {

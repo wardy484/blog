@@ -2,7 +2,7 @@ export default [{
   path: 'categories',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.category',
     component: () => import('./Category')
   }, {

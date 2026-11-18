@@ -58,7 +58,7 @@ export default {
   edit: 'Редактировать',
   crop_avatar: 'Обрезать аватар',
   modify_avatar: 'Изменить аватар',
-  content_placeholder: 'Введите контент для %{type}.',
+  content_placeholder: 'Введите контент для {type}.',
   article: 'статья',
   discussion: 'обсуждение',
   comment: 'комментарий',

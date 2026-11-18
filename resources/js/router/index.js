@@ -1,9 +1,6 @@
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import beforeEach from './beforeEach'
 import { routes as dashboard } from '../dashboard/index'
-
-Vue.use(Router);
 
 const AppRoute = {
   path: '/',
@@ -13,11 +10,11 @@ const AppRoute = {
 
 const routes = [AppRoute];
 
-const router = new Router({
+const router = createRouter({
+  history: createWebHistory(),
   routes,
   linkActiveClass: 'active',
   linkExactActiveClass: 'active',
-  mode: 'history',
 });
 
 router.beforeEach(beforeEach);

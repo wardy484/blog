@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <vue-table :title="$t('page.categories')" :fields="fields" api-url="category" show-paginate @table-action="tableActions">
-      <template slot="buttons">
+    <vue-table ref="table" :title="$t('page.categories')" :fields="fields" api-url="category" show-paginate @table-action="tableActions">
+      <template #buttons>
         <router-link :to="{ name: 'dashboard.category.create' }" class="btn btn-sm btn-success" v-if="checkPermission('CREATE_CATEGORY')">{{ $t('page.create') }}</router-link>
       </template>
     </vue-table>
@@ -45,7 +45,7 @@ export default {
           .then((response) => {
             toastr.success('You delete the category success!')
 
-            this.$emit('reload')
+            this.$refs.table.reload()
           }).catch(({ response }) => {
             toastr.error(response.status + ' : Resource ' + response.statusText)
           })

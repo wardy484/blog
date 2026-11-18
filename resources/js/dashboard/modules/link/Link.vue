@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <vue-table :title="$t('page.links')" :fields="fields" api-url="link" show-paginate @table-action="tableActions">
-      <template slot="buttons">
+    <vue-table ref="table" :title="$t('page.links')" :fields="fields" api-url="link" show-paginate @table-action="tableActions">
+      <template #buttons>
         <router-link :to="{ name: 'dashboard.link.create' }" class="btn btn-sm btn-success" v-if="checkPermission('CREATE_LINK')">{{ $t('page.create') }}</router-link>
       </template>
     </vue-table>
@@ -60,7 +60,7 @@ export default {
           .then((response) => {
             toastr.success('You delete the link success!')
 
-            this.$emit('reload', action)
+            this.$refs.table.reload()
           }).catch(({ response }) => {
             toastr.error(response.status + ' : Resource ' + response.statusText)
           })

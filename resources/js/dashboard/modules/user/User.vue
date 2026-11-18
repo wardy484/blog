@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <vue-table :title="$t('page.users')" :fields="fields" api-url="user" @table-action="tableActions" show-paginate>
-      <template slot="buttons">
+    <vue-table ref="table" :title="$t('page.users')" :fields="fields" api-url="user" @table-action="tableActions" show-paginate>
+      <template #buttons>
         <router-link :to="{ name: 'dashboard.user.create' }" class="btn btn-sm btn-success" v-if="checkPermission('CREATE_USER')">{{ $t('page.create') }}</router-link>
       </template>
     </vue-table>
@@ -58,7 +58,7 @@ export default {
           .then((response) => {
             toastr.success('You delete the user success!')
 
-            this.$emit('reload')
+            this.$refs.table.reload()
           }, (response) => {
             if ((typeof response.data.error !== 'string') && response.data.error) {
               toastr.error(response.data.error.message)

@@ -1,4 +1,5 @@
 // Font-awesome
+$fa-font-path: "@fortawesome/fontawesome-free/webfonts";
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
@@ -14,4 +15,4 @@
 @import "~sweetalert2/src/sweetalert2.scss";
 
 // Toastr
-@import url("vendor/toastr.min.css");
+@import url("./vendor/toastr.min.css");

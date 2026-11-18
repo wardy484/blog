@@ -1,7 +1,7 @@
 <template>
   <div class="row">
-    <vue-table :title="$t('page.articles')" :fields="fields" api-url="article" :item-actions="itemActions" @table-action="tableActions" show-paginate>
-      <template slot="buttons">
+    <vue-table ref="table" :title="$t('page.articles')" :fields="fields" api-url="article" :item-actions="itemActions" @table-action="tableActions" show-paginate>
+      <template #buttons>
         <router-link :to="{ name: 'dashboard.article.create' }" class="btn btn-sm btn-success" v-if="checkPermission('CREATE_ARTICLE')">{{ $t('page.create') }}</router-link>
       </template>
     </vue-table>
@@ -56,7 +56,7 @@ export default {
           .then((response) => {
             toastr.success('You delete the article success!')
 
-            this.$emit('reload')
+            this.$refs.table.reload()
           }).catch(({ response }) => {
             if ((typeof response.data.error !== 'string') && response.data.error) {
               toastr.error(response.data.error.message)

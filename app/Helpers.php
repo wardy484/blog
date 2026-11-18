@@ -42,18 +42,6 @@ if(!function_exists('isActive')) {
     }
 }
 
-if(!function_exists('translug')) {
-    /**
-     * Translate the slug to english.
-     *
-     * @param string $slug
-     * @return string
-     */
-    function translug($slug) {
-        return app('Translug')->translate($slug);
-    }
-}
-
 if(!function_exists('lang')) {
     /**
      * Trans for getting the language.

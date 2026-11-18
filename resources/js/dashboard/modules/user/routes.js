@@ -2,7 +2,7 @@ export default [{
   path: 'users',
   component: () => import ('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.user',
     component: () =>
       import ('./User')

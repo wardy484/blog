@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Comment;
+use App\User;
+use App\Article;
 use Illuminate\Database\Seeder;
 
 class CommentsTableSeeder extends Seeder
@@ -14,6 +16,10 @@ class CommentsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Comment::class, 50)->create();
+        Comment::factory()
+            ->count(50)
+            ->recycle(User::all())
+            ->recycle(Article::all())
+            ->create();
     }
 }

@@ -2,7 +2,7 @@ export default [{
   path: 'tags',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.tag',
     component: () => import('./Tag')
   }, {

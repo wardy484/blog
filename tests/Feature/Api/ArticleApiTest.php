@@ -1,41 +1,64 @@
 <?php
 
-namespace Tests\Feature\Api;
+use App\Article;
+use App\Category;
 
-use Tests\TestCase;
+it('blocks the admin API for guests', function () {
+    $this->getJson('api/article')->assertUnauthorized();
+});
 
-class ArticleApiTest extends TestCase
-{
-    /** @test */
-    public function it_shows_all_articles()
-    {
-        $response = $this->actingAsAdmin()->get('api/article');
+it('lists articles for an admin', function () {
+    actingAsApiAdmin();
+    Article::factory()->count(2)->create();
 
-        $response->assertStatus(200);
-        $response->assertJsonStructure([
-            'data' => ['*' => ['id', 'title', 'subtitle', 'user', 'slug', 'content', 'page_image', 'meta_description', 'is_original', 'is_draft', 'visitors', 'published_at', 'published_time']],
-            'meta' => ['pagination' => []],
+    $this->getJson('api/article')
+        ->assertOk()
+        ->assertJsonCount(2, 'data')
+        ->assertJsonStructure([
+            'data' => ['*' => ['id', 'title', 'slug', 'content', 'is_draft', 'published_at']],
+            'meta' => ['pagination'],
         ]);
-    }
+});
 
-    /** @test */
-    public function it_shows_a_article()
-    {
-        $article = factory(\App\Article::class, 1)->create()->first();
-        $response = $this->actingAsAdmin()->get(route('api.article.edit', $article->id));
+it('creates an article', function () {
+    actingAsApiAdmin();
+    $category = Category::factory()->create();
 
-        $response->assertStatus(200);
-    }
+    $this->postJson('api/article', [
+        'title' => 'A new article',
+        'subtitle' => 'Subtitle',
+        'content' => '# Hello',
+        'category_id' => $category->id,
+        'meta_description' => 'About it',
+        'is_original' => true,
+        'published_at' => now()->toDateTimeString(),
+        'tags' => '[]',
+    ])->assertSuccessful();
 
-    /** @test */
-    public function it_store_a_article()
-    {
-        $article = factory(\App\Article::class)->make();
+    $article = Article::where('title', 'A new article')->firstOrFail();
+    expect($article->content['html'])->toContain('<h1>Hello</h1>');
+});
 
-        $data = array_merge($article->toArray(), [ 'tags' => '[1, 2]' ]);
+it('updates and deletes an article', function () {
+    actingAsApiAdmin();
+    $article = Article::factory()->create();
 
-        $response = $this->actingAsAdmin()->post(route('api.article.store', $data));
+    $this->getJson("api/article/{$article->id}/edit")->assertOk();
 
-        $response->assertStatus(204);
-    }
-}
+    $this->patchJson("api/article/{$article->id}", [
+        'title' => 'Renamed',
+        'subtitle' => $article->subtitle,
+        'content' => 'Body',
+        'category_id' => $article->category_id,
+        'meta_description' => 'x',
+        'is_draft' => false,
+        'is_original' => true,
+        'published_at' => now()->toDateTimeString(),
+        'tags' => '[]',
+    ])->assertSuccessful();
+
+    expect($article->fresh()->title)->toBe('Renamed');
+
+    $this->deleteJson("api/article/{$article->id}")->assertSuccessful();
+    $this->assertSoftDeleted('articles', ['id' => $article->id]);
+});

@@ -3,7 +3,7 @@
     <div :class="cropperWrapper">
       <img id="cropImage" style="width:100%" :src="image.url">
     </div>
-    <span slot="footer" class="footer">
+    <span class="footer">
       <button class="btn btn-outline-secondary" @click="cancel">{{ $t('form.cancel') }}</button>
       <button class="btn btn-primary" @click="upload">{{ $t('form.ok') }}</button>
     </span>

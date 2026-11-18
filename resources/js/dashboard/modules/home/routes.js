@@ -1,5 +1,5 @@
 export default [{
-  path: '/',
+  path: '',
   redirect: { name: 'dashboard.home' },
 }, {
   name: 'dashboard.home',

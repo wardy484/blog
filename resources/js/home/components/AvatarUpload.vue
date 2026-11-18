@@ -6,7 +6,7 @@
       <input type="file" name="avatar" :accept="imageType" @change="upload">
     </a>
     <modal :show="dialogVisible" @cancel="dialogVisible = false">
-      <div slot="title">{{ $t('form.crop_avatar') }}</div>
+      <template #title>{{ $t('form.crop_avatar') }}</template>
       <cropper :image="cropImage" @canceled="dialogVisible = false" @succeed="succeed"></cropper>
     </modal>
   </div>

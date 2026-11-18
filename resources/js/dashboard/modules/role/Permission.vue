@@ -5,7 +5,7 @@
         <h5 class="m-0">{{ $t('form.set_permissions') }}</h5>
         <small>
           <button class="btn btn-sm btn-primary mr-2" @click="savePermissions">{{ $t('form.submit') }}</button>
-          <router-link :to="{ name: 'dashboard.role' }" class="btn btn-sm btn-secondary" exact>{{ $t('form.back') }}</router-link>
+          <router-link :to="{ name: 'dashboard.role' }" class="btn btn-sm btn-secondary">{{ $t('form.back') }}</router-link>
         </small>
       </div>
       <div class="box-content p-0">
