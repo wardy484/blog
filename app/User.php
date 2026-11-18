@@ -7,6 +7,7 @@ use EloquentFilter\Filterable;
 use App\Traits\FollowTrait;
 use App\Traits\Voter;
 use App\Scopes\StatusScope;
+use Laravel\Passport\Contracts\OAuthenticatable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -14,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable
+class User extends Authenticatable implements OAuthenticatable
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes, FollowTrait, Voter, HasRoles, Filterable;
 
