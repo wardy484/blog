@@ -7,7 +7,11 @@ use Laravel\Passport\Passport;
 use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
-uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+uses(TestCase::class, RefreshDatabase::class)
+    ->beforeEach(fn () => $this->withoutVite())
+    ->in('Feature');
+
+uses(TestCase::class, RefreshDatabase::class)->in('Browser');
 
 function admin(): User
 {

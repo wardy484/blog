@@ -17,3 +17,4 @@ _ide_helper.php
 /.phpunit.cache
 .phpunit.result.cache
 
+/tests/Browser/Screenshots

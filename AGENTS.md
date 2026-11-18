@@ -32,11 +32,15 @@ composer install
 cp .env.example .env
 php artisan key:generate
 php artisan passport:keys
-vendor/bin/pest            # feature tests, SQLite in memory
-vendor/bin/pest --coverage # with coverage (needs pcov or xdebug)
+yarn install && yarn build  # Vite assets, needed by the browser test
+npx playwright install chromium
+
+vendor/bin/pest                       # everything, SQLite in memory
+vendor/bin/pest --testsuite=Feature   # skip the browser
+vendor/bin/pest --coverage            # needs pcov or xdebug
 ```
 
-Front end: see `package.json`. CI runs both in `.github/workflows/tests.yml`.
+CI runs all of it in `.github/workflows/tests.yml`.
 
 ## Skills
 
