@@ -15,4 +15,7 @@ _ide_helper.php
 /storage/oauth-private.key
 /storage/oauth-public.key
 /package-lock.json
-.vscode/*.phpunit.result.cache
+.vscode/*
+/.phpunit.cache
+.phpunit.result.cache
+
