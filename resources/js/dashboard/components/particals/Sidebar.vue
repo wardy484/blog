@@ -20,7 +20,7 @@
           <p class="sidebar-heading text-white-50"><span>{{ $t(menu.label) }}</span></p>
           <ul class="sidebar-group-items">
             <li v-for="item in menu.children">
-              <router-link :to="item.uri">
+              <router-link :to="item.uri" :class="{ active: isOpen(item.uri) }">
                 <i :class="item.icon"></i> {{ $t(item.label) }}
               </router-link>
             </li>
@@ -49,6 +49,10 @@
     methods: {
       allows (item) {
         return item.permission ? this.checkPermission(item.permission) : true
+      },
+      // Vue Router 4 no longer marks a list link active on its create and edit pages.
+      isOpen (uri) {
+        return this.$route.path.startsWith(this.$router.resolve(uri).path)
       }
     },
     computed: {
