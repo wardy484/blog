@@ -219,7 +219,7 @@ export default {
           toastr.success('You create a new folder success!')
 
           this.showFolder = false
-          this.$set(this.upload.subfolders, this.path, this.folder)
+          this.upload.subfolders[this.path] = this.folder
           this.folder = ''
         }).catch(({ response }) => {
           toastr.error(response.status + ' : ' + response.statusText)
