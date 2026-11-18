@@ -1,9 +1,8 @@
-import Vue from 'vue'
 import {
   checkPerm
 } from 'dashboard/runtime/utils'
 
-Vue.mixin({
+export default {
   methods: {
 
     /**
@@ -47,4 +46,4 @@ Vue.mixin({
       return i > 0
     }
   }
-})
+}

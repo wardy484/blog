@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite'
 import laravel from 'laravel-vite-plugin'
-import vue from '@vitejs/plugin-vue2'
+import vue from '@vitejs/plugin-vue'
 import { fileURLToPath } from 'node:url'
 
 const js = fileURLToPath(new URL('./resources/js', import.meta.url))
@@ -17,12 +17,18 @@ export default defineConfig({
         'resources/sass/themes/gray-theme.scss',
       ],
     }),
-    vue(),
+    vue({
+      template: {
+        compilerOptions: {
+          compatConfig: { MODE: 2 },
+        },
+      },
+    }),
   ],
   resolve: {
     extensions: ['.mjs', '.js', '.json', '.vue'],
     alias: [
-      { find: /^vue$/, replacement: 'vue/dist/vue.esm.js' },
+      { find: /^vue$/, replacement: '@vue/compat/dist/vue.esm-bundler.js' },
       { find: /^~(.+)/, replacement: '$1' },
       { find: /^(config|lang|plugins|vendor|dashboard|home)\//, replacement: `${js}/$1/` },
       { find: /^js\//, replacement: `${js}/` },

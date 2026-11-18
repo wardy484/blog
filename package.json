@@ -6,7 +6,8 @@
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.3.1",
-    "@vitejs/plugin-vue2": "^2.3.0",
+    "@vitejs/plugin-vue": "^5",
+    "@vue/compat": "^3.5",
     "axios": "^0.21",
     "bootstrap": "^4.0.0",
     "chart.js": "^2.9.4",
@@ -24,14 +25,14 @@
     "simplemde": "^1.11.2",
     "social-share.js": "^1.0.15",
     "sweetalert2": "^7.15.1",
+    "textarea-caret": "^3.1",
     "toastr": "^2.1.4",
-    "v-textcomplete": "^0.1.2",
     "vite": "^6.0.0",
-    "vue": "~2.7.16",
-    "vue-i18n": "^8.28.2",
-    "vue-multiselect": "^2.0.8",
-    "vue-router": "^2.8.1",
-    "vuex": "^2.5.0"
+    "vue": "^3.5",
+    "vue-i18n": "^11",
+    "vue-multiselect": "^3",
+    "vue-router": "^4.5",
+    "vuex": "^4.1"
   },
   "type": "module"
 }

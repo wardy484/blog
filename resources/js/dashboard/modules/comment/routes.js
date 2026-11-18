@@ -2,7 +2,7 @@ export default [{
   path: 'comments',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.comment',
     component: () => import('./Comment')
   },

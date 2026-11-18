@@ -1,17 +1,16 @@
 import './bootstrap'
 import 'vendor/highlight.min.js'
-import Vue from 'vue'
+import { createApp } from 'vue'
 import httpPlugin from 'plugins/http/index'
-import VueRouter from 'vue-router'
 import store from './vuex/store.js'
-import VueI18n from 'vue-i18n'
-import 'vue-multiselect/dist/vue-multiselect.min.css'
+import { createI18n } from 'vue-i18n'
+import 'vue-multiselect/dist/vue-multiselect.css'
 
 import router from './router/index'
 import locales from 'lang/index'
 
 import App from './App.vue'
-import 'dashboard/runtime/mixins/index'
+import permissionMixin from 'dashboard/runtime/mixins/index'
 import marked from 'marked'
 import toastr from 'toastr'
 import TablePagination from 'dashboard/components/TablePagination.vue'
@@ -34,26 +33,20 @@ window.toastr.options = {
     hideMethod: "fadeOut"
 }
 
-Vue.use(httpPlugin)
-Vue.use(VueI18n)
-Vue.use(VueRouter)
-
-Vue.config.lang = window.Language
-
-const i18n = new VueI18n({
-    locale: Vue.config.lang,
+const i18n = createI18n({
+    legacy: false,
+    globalInjection: true,
+    locale: window.Language,
     messages: locales
 })
 
-Vue.component('vue-table-pagination', TablePagination)
-
-Vue.component('vue-table', Table)
-
-Vue.component('vue-form', Form)
-
-new Vue({
-    router,
-    store,
-    i18n,
-    render: (h) => h(App)
-}).$mount('#app')
+createApp(App)
+    .use(httpPlugin)
+    .use(i18n)
+    .use(router)
+    .use(store)
+    .mixin(permissionMixin)
+    .component('vue-table-pagination', TablePagination)
+    .component('vue-table', Table)
+    .component('vue-form', Form)
+    .mount('#app')

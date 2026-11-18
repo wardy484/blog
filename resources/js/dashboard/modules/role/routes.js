@@ -2,7 +2,7 @@ export default [{
   path: 'roles',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.role',
     component: () => import('./Role')
   }, {

@@ -2,7 +2,7 @@ export default [{
   path: 'links',
   component: () => import('js/App.vue'),
   children: [{
-    path: '/',
+    path: '',
     name: 'dashboard.link',
     component: () => import('./Link')
   }, {

@@ -61,7 +61,7 @@ import emojione from 'emojione'
 import FineUploader from 'fine-uploader/lib/traditional'
 import { stack_error } from 'config/helper'
 import VoteButton from 'home/components/VoteButton'
-import TextComplete from 'v-textcomplete'
+import TextComplete from 'home/components/TextComplete.vue'
 import { default as githubEmoji } from 'vendor/github_emoji'
 
 export default {

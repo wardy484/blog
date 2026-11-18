@@ -40,10 +40,6 @@ http.interceptors.response.use(function(response) {
   return Promise.reject(error);
 });
 
-export default function install(Vue) {
-  Object.defineProperty(Vue.prototype, '$http', {
-    get() {
-      return http
-    },
-  })
+export default function install(app) {
+  app.config.globalProperties.$http = http
 }
