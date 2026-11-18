@@ -5,7 +5,7 @@ namespace App;
 use App\Tools\Markdowner;
 use App\Traits\BelongsToUser;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Jcc\LaravelVote\Traits\Votable;
+use App\Traits\Votable;
 
 class Comment extends Model
 {
@@ -24,13 +24,6 @@ class Comment extends Model
         'commentable_type',
         'content'
     ];
-
-    /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['deleted_at'];
 
     /**
      * Get all of the owning commentable models.

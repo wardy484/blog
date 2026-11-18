@@ -15,13 +15,6 @@ class Article extends Model
     use SoftDeletes, BelongsToUser, HasComments, HasTags;
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = ['published_at', 'created_at', 'deleted_at'];
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -43,6 +36,7 @@ class Article extends Model
 
     protected $casts = [
         'content' => 'array',
+        'published_at' => 'datetime',
     ];
 
     /**

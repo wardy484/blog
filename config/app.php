@@ -169,7 +169,6 @@ return [
         JellyBool\Translug\TranslugServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Laravel\Tinker\TinkerServiceProvider::class,
-        Jcc\LaravelVote\VoteServiceProvider::class,
         JellyBool\Flysystem\Upyun\UpyunServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
 
