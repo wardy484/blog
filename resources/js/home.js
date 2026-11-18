@@ -31,7 +31,12 @@ const i18n = createI18n({
   messages: locales
 })
 
-createApp({})
+const app = createApp({})
+
+// Blade renders the page and Vue compiles it in the browser. Keep Vue 2's spacing.
+app.config.compilerOptions.whitespace = 'preserve'
+
+app
   .use(i18n)
   .use(httpPlugin)
   .component('comment', Comment)

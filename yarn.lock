@@ -420,16 +420,6 @@
   resolved "https://registry.yarnpkg.com/@vitejs/plugin-vue/-/plugin-vue-5.2.4.tgz#9e8a512eb174bfc2a333ba959bbf9de428d89ad8"
   integrity sha512-7Yx/SXSOcQq5HiiV3orevHUFn+pmMB4cgbEkDYgnkUWb0WfeQ/wa2yFv6D5ICiCQOVpjA7vYDXrC7AGO8yjDHA==
 
-"@vue/compat@^3.5":
-  version "3.5.45"
-  resolved "https://registry.yarnpkg.com/@vue/compat/-/compat-3.5.45.tgz#a09861642517e47c4ea9bb2ee3cad58c937e9f0a"
-  integrity sha512-J/A9AXJCYcWbHlMHG2RN/XX5kqJ+4VGK/w3lj5kP3BA9l3bM3Biu9S4BfPwZUKkakopd9b8JNSI0k6rlOZ3uUw==
-  dependencies:
-    "@babel/parser" "^7.29.12"
-    entities "^7.0.1"
-    estree-walker "^2.0.2"
-    source-map-js "^1.2.2"
-
 "@vue/compiler-core@3.5.45":
   version "3.5.45"
   resolved "https://registry.yarnpkg.com/@vue/compiler-core/-/compiler-core-3.5.45.tgz#90c17a54f36dcc44f03ffdcacaca08110a89f255"

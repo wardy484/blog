@@ -20,7 +20,7 @@ export default defineConfig({
     vue({
       template: {
         compilerOptions: {
-          compatConfig: { MODE: 2 },
+          whitespace: 'preserve',
         },
       },
     }),
@@ -28,7 +28,7 @@ export default defineConfig({
   resolve: {
     extensions: ['.mjs', '.js', '.json', '.vue'],
     alias: [
-      { find: /^vue$/, replacement: '@vue/compat/dist/vue.esm-bundler.js' },
+      { find: /^vue$/, replacement: 'vue/dist/vue.esm-bundler.js' },
       { find: /^~(.+)/, replacement: '$1' },
       { find: /^(config|lang|plugins|vendor|dashboard|home)\//, replacement: `${js}/$1/` },
       { find: /^js\//, replacement: `${js}/` },
